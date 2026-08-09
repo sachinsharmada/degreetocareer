@@ -562,3 +562,13 @@ img {
     font-size: 48px;
   }
 }
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 170px;
+    height: auto;
+    display: block;
+}
