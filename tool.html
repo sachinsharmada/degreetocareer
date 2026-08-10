@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find Your Right Online Degree | Degree to Career</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+:root{--b:#075fe5;--n:#172033;--m:#6c7485;--l:#e3e7ee;--s:#eef5ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(#fff,#f7faff);color:var(--n)}
+.header{height:72px;background:#fff;border-bottom:1px solid #edf0f5;display:flex;align-items:center;padding:0 28px}.logo img{width:145px;height:54px;object-fit:contain;display:block}
+.wrap{min-height:calc(100vh - 72px);display:flex;justify-content:center;align-items:center;padding:34px 16px}.app{width:min(720px,100%)}
+.card{background:#fff;border:1px solid #dce5f2;border-radius:22px;box-shadow:0 18px 50px #18345a1a;padding:28px}
+.coach{display:flex;gap:12px;align-items:center;background:#edf4ff;border:1px solid #cfe0ff;border-left:4px solid var(--b);padding:13px 15px;border-radius:15px;margin-bottom:22px}.avatar{width:40px;height:40px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-weight:800}.coach strong{font-size:13px;color:var(--b)}.coach span{font-size:14px;font-weight:600}
+.meta{display:flex;justify-content:space-between;color:#737b8b;font-size:12px;font-weight:700}.progress{height:5px;background:#e7eaf0;border-radius:99px;overflow:hidden;margin:9px 0 26px}.progress div{height:100%;background:var(--b);transition:.25s}
+h1{font-size:25px;line-height:1.22;margin:0 0 8px}.sub{color:var(--m);font-size:14px;line-height:1.5;margin:0 0 20px}.options{display:grid;gap:10px}
+.option{border:1px solid var(--l);border-radius:13px;background:#fff;padding:16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-weight:650;transition:.15s}.option:hover{border-color:#a9c7fb}.option.selected{border-color:#4388ee;background:#f7fbff;color:#075bd5;box-shadow:0 0 0 1px #4388ee inset}
+.radio{width:20px;height:20px;border:2px solid #b7bfcc;border-radius:50%;flex:none;position:relative}.selected .radio{border-color:var(--b)}.selected .radio:after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--b)}
+.note{margin-top:16px;background:var(--s);border:1px solid #cfe0ff;border-radius:13px;padding:14px;color:#667086;font-size:13px}.lock{margin-top:14px;background:#fff5e8;border:1px solid #ffb55b;color:#9a4d08;border-radius:13px;padding:12px;text-align:center;font-weight:750;font-size:13px}
+.actions{display:flex;justify-content:space-between;margin-top:28px;gap:12px}button{border:0;border-radius:12px;padding:14px 23px;font-size:15px;font-weight:800;cursor:pointer}.back{background:#fff;border:1px solid var(--l)}.next,.submit{background:var(--b);color:#fff}.next{min-width:140px}.next:disabled{background:#9db9eb;cursor:not-allowed}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px}.full{grid-column:1/-1}label{font-size:13px;font-weight:750}input,select{height:48px;border:1px solid #d7dce5;border-radius:10px;padding:0 13px;font:inherit;outline:0}input:focus,select:focus{border-color:#4388ee;box-shadow:0 0 0 3px #e8f1ff}.consent{font-size:11px;line-height:1.5;color:#70788a;margin:18px 0}.submit{width:100%;height:52px}.success{text-align:center;padding:20px}.check{width:64px;height:64px;border-radius:50%;background:#dff8ec;color:#15945a;display:grid;place-items:center;font-size:30px;margin:auto auto 18px}.hidden{display:none!important}.footer{font-size:11px;color:#8a91a0;text-align:center;margin-top:16px}
+@media(max-width:600px){.header{padding:0 16px}.logo img{width:125px}.card{padding:20px;border-radius:18px}h1{font-size:22px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{padding:20px 10px 35px}}
+</style>
+</head>
+<body>
+<header class="header"><a class="logo" href="index.html"><img src="assets/logo.png" alt="Degree to Career"></a></header>
+<main class="wrap"><section class="app">
+<div class="card" id="quizCard">
+<div class="coach"><div class="avatar">D</div><div><strong>Degree to Career</strong><br><span id="coachText"></span></div></div>
+<div class="meta"><span id="chapter"></span><span id="percent"></span></div><div class="progress"><div id="bar"></div></div>
+<h1 id="question"></h1><p class="sub" id="sub"></p><div class="options" id="options"></div><div class="note hidden" id="note"></div><div class="lock" id="lock">Choose an option to continue</div>
+<div class="actions"><button class="back" id="backBtn" type="button">← Back</button><button class="next" id="nextBtn" type="button" disabled>Next →</button></div>
+</div>
+
+<div class="card hidden" id="leadCard">
+<div class="coach"><div class="avatar">D</div><div><strong>Almost there</strong><br><span>We'll use your answers to understand what kind of programme may fit you.</span></div></div>
+<h1>Let's find the right fit for you.</h1><p class="sub">Share your details so an education counsellor can review your answers and contact you with relevant options.</p>
+<form id="leadForm"><div class="form-grid">
+<div class="field"><label>Full Name *</label><input name="name" required placeholder="Full Name"></div>
+<div class="field"><label>Email *</label><input name="email" type="email" required placeholder="Email"></div>
+<div class="field"><label>Phone Number *</label><input name="phone" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit mobile number"></div>
+<div class="field"><label>State *</label><select name="state" required><option value="">Select State</option><option>Delhi</option><option>Haryana</option><option>Uttar Pradesh</option><option>Punjab</option><option>Maharashtra</option><option>Rajasthan</option><option>Karnataka</option><option>Gujarat</option><option>West Bengal</option><option>Tamil Nadu</option><option>Telangana</option><option>Kerala</option><option>Bihar</option><option>Madhya Pradesh</option><option>Other</option></select></div>
+<div class="field full"><label>What are you interested in? *</label><select name="course" required><option value="">Select course</option><option>Online MBA</option><option>Online BBA</option><option>Online MCA</option><option>Online BCA</option><option>Online M.Com</option><option>Online B.Com</option><option>Online MA / MSc</option><option>PhD / Doctorate</option><option>Not sure — recommend for me</option></select></div>
+</div><p class="consent">By submitting, you agree to be contacted by Degree to Career regarding education and career guidance. Please ensure your privacy policy reflects this data use.</p><button class="submit" id="submitBtn">Get My Recommendations →</button></form>
+</div>
+<div class="card hidden" id="successCard"><div class="success"><div class="check">✓</div><h1>Thanks — your details are in.</h1><p class="sub">Our counsellor can now review your answers and help you shortlist suitable degree or course options.</p></div></div>
+<div class="footer">Degree to Career • Education & Career Guidance</div>
+</section></main>
+
+<script>
+const LEAD_ENDPOINT="";
+const questions=[
+["Why do you want a degree right now?","This helps us understand the outcome you care about most.",["A government job, eligibility or a promotion at work","A new job or better placement","A recognised degree is what I need","Career growth / salary improvement"]],
+["What is your highest qualification till now?","We'll use this to keep recommendations relevant to your eligibility.",["12th","Diploma holder","Graduate (Bachelor's)","Postgraduate (Master's)"]],
+["What best describes you right now?","There is no right or wrong answer.",["Working professional","Currently a student","Looking for a job","On a career break / restarting"]],
+["How many years of work experience do you have?","Experience can change which programme makes practical sense for you.",["0–2 years","2–5 years","5–10 years","10+ years"]],
+["How much are you comfortable investing in your education?","Choose the range that feels realistic for you.",["₹50,000 – ₹1 lakh","₹1 lakh – ₹2 lakh","₹2 lakh – ₹3 lakh","₹3 lakh+"]],
+["Which study mode suits you best?","Think about your current work, travel and personal commitments.",["100% online with live classes and faculty support","Mostly self-paced learning works for me","I need flexibility because of work/family","Not sure yet"]],
+["How important is it for you to finish the degree within the stated duration?","Choose what fits your priorities.",["Very important — I want fixed deadlines","I can take longer if needed","I prefer flexibility over speed"]],
+["How important is faculty / academic support when you get stuck?","Some learners prefer independent study; others want someone to ask.",["Very important — I want real support","Some support is enough","I am comfortable figuring things out myself"]],
+["How do you learn best?","This helps us understand what kind of learning experience may suit you.",["Live teaching and explanations","Recorded lectures + self-study","A mix of live and recorded learning","Mostly reading / PDFs is fine"]],
+["How important are placement or career-support services to you?","Finishing a degree and improving your career outcome are different goals.",["Very important","Helpful but not essential","I will handle my job search myself"]],
+["Do you need a programme that works around a full-time job?","Your schedule can affect the right programme format.",["Yes, I need maximum flexibility","Yes, but I can follow fixed classes","No, I can study full-time"]],
+["What matters most when comparing universities?","Pick the factor you would use first when making a shortlist.",["Recognition / accreditation","Fees and affordability","Faculty and learning experience","Placements / career support","University reputation"]],
+["When would you ideally like to start?","We'll use this to understand how urgent your decision is.",["As soon as possible","Within 1–3 months","Within 3–6 months","Just researching for now"]]
+];
+let cur=0,ans=Array(questions.length).fill("");
+const $=x=>document.getElementById(x);
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function render(){
+ let q=questions[cur];$("chapter").textContent=`QUESTION ${cur+1} OF ${questions.length}`;
+ let pct=Math.round(cur/(questions.length-1)*100);$("percent").textContent=pct+"%";$("bar").style.width=pct+"%";
+ $("question").textContent=q[0];$("sub").textContent=q[1];$("coachText").textContent=cur===0?"Let's start with what actually matters for your decision.":"Let's make sure the recommendation fits your real situation.";
+ $("options").innerHTML=q[2].map(v=>`<div class="option ${ans[cur]===v?"selected":""}" data-v="${esc(v)}"><span class="radio"></span><span>${esc(v)}</span></div>`).join("");
+ $("lock").classList.toggle("hidden",!!ans[cur]);$("nextBtn").disabled=!ans[cur];$("nextBtn").textContent=cur===questions.length-1?"Finish →":"Next →";$("backBtn").disabled=cur===0;
+ document.querySelectorAll(".option").forEach(o=>o.onclick=()=>{ans[cur]=o.dataset.v;render()});
+}
+$("nextBtn").onclick=()=>{if(!ans[cur])return;if(cur<questions.length-1){cur++;render();scrollTo({top:0,behavior:"smooth"})}else{$("quizCard").classList.add("hidden");$("leadCard").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}};
+$("backBtn").onclick=()=>{if(cur){cur--;render()}};
+$("leadForm").onsubmit=async e=>{
+ e.preventDefault();let b=$("submitBtn");b.disabled=true;b.textContent="Submitting…";
+ let p=Object.fromEntries(new FormData(e.target).entries()),u=new URLSearchParams(location.search);
+ p.answers=questions.map((q,i)=>({question:q[0],answer:ans[i]}));p.utm_source=u.get("utm_source")||"";p.utm_medium=u.get("utm_medium")||"";p.utm_campaign=u.get("utm_campaign")||"";p.utm_content=u.get("utm_content")||"";p.landing_page=location.href;p.submitted_at=new Date().toISOString();
+ try{if(LEAD_ENDPOINT)await fetch(LEAD_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p)});else console.log("Set LEAD_ENDPOINT to save leads.",p);
+ $("leadCard").classList.add("hidden");$("successCard").classList.remove("hidden");
+ }catch(err){b.disabled=false;b.textContent="Get My Recommendations →";alert("Submission failed. Please try again.")}};
+render();
+</script>
+</body></html>
