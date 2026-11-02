@@ -624,3 +624,14 @@ img {
     max-height: 65px !important;
     object-fit: contain;
 }
+
+/* Footer Copyright */
+.footer-copyright {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    color: #b8c1d1;
+    font-size: 14px;
+    line-height: 1.6;
+}
